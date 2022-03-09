@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,6 @@ Route::get('/docLaravel', function () {
     return view('welcome');
 });
 
-Route::get('/', function() {
-    return view('home');
-});
+Route::get('/', [SeriesController::class, "index"]);
+
+Route::get("/serie/adicionar", [SeriesController::class, 'create']);
