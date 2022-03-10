@@ -21,3 +21,4 @@ Route::get('/docLaravel', function () {
 Route::get('/', [SeriesController::class, "index"]);
 
 Route::get("/serie/adicionar", [SeriesController::class, 'create']);
+Route::post("/serie/adicionar", [SeriesController::class, 'store']);
