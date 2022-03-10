@@ -11,11 +11,7 @@ class SeriesController extends Controller
     public function index(Request $request)
     {
 
-        $listaSeries = [
-            'serie 1',
-            'serie 2',
-            'serie 3'
-        ];
+        $listaSeries = Serie::query()->orderBy('nome')->get();
 
         return view("series.index", compact('listaSeries'));
 
@@ -33,7 +29,7 @@ class SeriesController extends Controller
             'nome' => $request->nome
         ]);
 
-        var_dump($serie);
+        header("Location: /");
 
     }
 
