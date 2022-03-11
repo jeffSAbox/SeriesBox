@@ -35,7 +35,7 @@ class SeriesController extends Controller
             "msg_alert", "Serie {$request->nome} criada com sucesso!"
         );
 
-        return redirect("/");
+        return redirect()->route("listar_series");
 
     }
 
@@ -48,7 +48,7 @@ class SeriesController extends Controller
             "Serie deletada com sucesso!"
         );
 
-        return redirect("/");
+        return redirect()->route("listar_series");
     }
 
 }
