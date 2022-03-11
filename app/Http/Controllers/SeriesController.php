@@ -29,7 +29,7 @@ class SeriesController extends Controller
             'nome' => $request->nome
         ]);
 
-        header("Location: /");
+        return redirect("/");
 
     }
 
