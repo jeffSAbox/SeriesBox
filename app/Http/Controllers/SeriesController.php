@@ -13,7 +13,9 @@ class SeriesController extends Controller
 
         $listaSeries = Serie::query()->orderBy('nome')->get();
 
-        return view("series.index", compact('listaSeries'));
+        $msg_alert = $request->session()->get("msg_alert");
+
+        return view("series.index", compact('listaSeries', 'msg_alert'));
 
     }
 
@@ -28,6 +30,10 @@ class SeriesController extends Controller
         $serie = Serie::create([
             'nome' => $request->nome
         ]);
+
+        $request->session()->flash(
+            "msg_alert", "Serie {$request->nome} criada com sucesso!"
+        );
 
         return redirect("/");
 
