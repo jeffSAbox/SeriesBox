@@ -39,4 +39,16 @@ class SeriesController extends Controller
 
     }
 
+    public function destroy(Request $request)
+    {
+        Serie::where("id_serie", $request->id_serie)->delete();
+
+        $request->session()->flash(
+            "msg_alert",
+            "Serie deletada com sucesso!"
+        );
+
+        return redirect("/");
+    }
+
 }

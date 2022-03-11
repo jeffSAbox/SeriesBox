@@ -18,7 +18,8 @@ Route::get('/docLaravel', function () {
     return view('welcome');
 });
 
-Route::get('/', [SeriesController::class, "index"]);
+Route::get('/', [SeriesController::class, "index"]);    // index
+Route::get("/serie/adicionar", [SeriesController::class, 'create']); // form create
+Route::post("/serie/adicionar", [SeriesController::class, 'store']); // salvar form create
+Route::delete("/serie/{id_serie}", [SeriesController::class, 'destroy']); // deletar serie
 
-Route::get("/serie/adicionar", [SeriesController::class, 'create']);
-Route::post("/serie/adicionar", [SeriesController::class, 'store']);
