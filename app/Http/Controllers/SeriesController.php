@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SeriesAdicionarRequest;
 use App\Models\Serie;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class SeriesController extends Controller
         return view("series.adicionar");
     }
 
-    public function store(Request $request)
+    public function store(SeriesAdicionarRequest $request)
     {
 
         $serie = Serie::create([
