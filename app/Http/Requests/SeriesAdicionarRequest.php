@@ -28,6 +28,13 @@ class SeriesAdicionarRequest extends FormRequest
         ];
     }
 
+    public function attributes()
+    {
+        return [
+            'nome' => 'Nome'
+        ];
+    }
+
     public function messages()
     {
         return [
