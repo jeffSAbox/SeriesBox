@@ -9,9 +9,10 @@ class Serie extends Model
     protected $table = "series";
     public $timestamps = false; 
     protected $fillable = ['nome'];
+    protected $primaryKey = "id_serie";
 
     public function Temporadas()
     {
-        return $this->hasMany(Temporada::class);
+        return $this->hasMany(Temporada::class, 'serie_id');
     }
 }

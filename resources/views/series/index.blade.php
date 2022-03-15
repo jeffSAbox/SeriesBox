@@ -21,8 +21,9 @@
             <div>
                 {{ $serie->nome }}
             </div>
-            <div>
-                <form method="POST" action="/serie/{{ $serie->id_serie }}" onsubmit="return confirm('Tem certeza que deseja deletar a serie {{ $serie->nome }}')">
+            <div class="d-flex">
+                <a href="/serie/{{ $serie->id_serie }}/temporadas" class="btn btn-info me-1">Temporadas</a>          
+                <form method="POST" class="ml-5" action="/serie/{{ $serie->id_serie }}" onsubmit="return confirm('Tem certeza que deseja deletar a serie {{ $serie->nome }}')">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit">Deletar</button>

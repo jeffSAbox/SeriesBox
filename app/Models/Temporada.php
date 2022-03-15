@@ -9,11 +9,12 @@ class Temporada extends Model
 {
     use HasFactory;
 
+    protected $table = "temporadas";
     protected $fillable = ['numero'];
 
     public function Serie()
     {
-        return $this->belongsTo(Serie::class);
+        return $this->belongsTo(Serie::class, 'id_serie');
     }
 
     public function Episodios()
