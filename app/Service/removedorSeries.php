@@ -9,16 +9,14 @@ class removedorSeries
 {
     public function removerSerie(int $serieId): string
     {
-        $nomeSerie = '';
-        DB::transaction(function () use (&$nomeSerie, $serieId) {
         
+        DB::beginTransaction();
             $serie = Serie::where("id_serie", $serieId)->first();
             $nomeSerie = $serie->nome;
             
             $this->removerTemporadas($serie);
             $serie->delete();
-
-        });
+        DB::commit();
 
         return $nomeSerie;
     }
