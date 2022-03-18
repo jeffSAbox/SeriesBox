@@ -18,5 +18,7 @@
         @yield('conteudo')
 
     </div>
+
+    @yield('footer-script')
 </body>
 </html>
