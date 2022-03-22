@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\EpisodiosController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\TemporadasController;
+use App\Models\Episodio;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +30,5 @@ Route::delete("/serie/{id_serie}", [SeriesController::class, 'destroy']); // del
 Route::post('/serie/{id}/editarNome', [SeriesController::class, 'editarNome']);
 
 Route::get('/serie/{serieId}/temporadas', [TemporadasController::class, 'index']);
-
+Route::get('/temporada/{temporada}/episodios', [EpisodiosController::class, 'index']);
+Route::post('/temporada/{temporada}/episodios/assistir', [EpisodiosController::class, 'assistir']);

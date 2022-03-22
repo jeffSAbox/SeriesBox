@@ -6,11 +6,7 @@
 
 @section('conteudo')
 
-@if( !empty($msg_alert) )
-<div class="alert alert-success" role="alert">
-    {{$msg_alert}}
-</div>
-@endif
+@include('components.mensagem', ['msg_alert' => $msg_alert])
 
 <a href="{{ route('form_criar_serie') }}" role="button" class="btn btn-primary mb-2 mt-2">Adicionar</a>
 
