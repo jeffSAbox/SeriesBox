@@ -11,7 +11,7 @@
     <li class="list-group-item">
         <div class="d-flex justify-content-between">
             <div>
-                {{ $temporada->numero }}
+                Temporada {{ $temporada->numero }}
             </div>
         </div>
     </li>    
