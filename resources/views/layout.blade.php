@@ -12,9 +12,16 @@
 <body>
     <div class="container">
     
-        <div class="display-3">
-            @yield('titulo')
-        </div>
+        <nav class="navbar navbar-light bg-light mb-2">
+            <div class="container-fluid">
+              <span class="navbar-brand mb-0 h1">
+                <div class="display-3">
+                    @yield('titulo')
+                </div>
+              </span>
+            </div>
+          </nav>
+        
         
         @yield('conteudo')
 
