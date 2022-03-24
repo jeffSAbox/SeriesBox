@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required|min:5'
         ];
     }
@@ -40,7 +40,7 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'email' => 'Digite um :attribute válido',
+            'email.email' => 'Digite um :attribute válido',
             'password.min' => ':attribute deve ter no minimo 5 caracteres'
         ];
     }
