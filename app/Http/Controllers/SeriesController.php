@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SeriesAdicionarRequest;
-use App\Models\Episodio;
 use App\Models\Serie;
-use App\Models\Temporada;
 use App\Service\criadorSeries;
 use App\Service\removedorSeries;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SeriesController extends Controller
 {
