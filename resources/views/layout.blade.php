@@ -10,23 +10,37 @@
     <title>@yield('titulo')</title>
 </head>
 <body>
-    <div class="container">
-    
-        <nav class="navbar navbar-light bg-light mb-2">
-            <div class="container-fluid">
-              <span class="navbar-brand mb-0 h1">
-                <div class="display-3">
-                    @yield('titulo')
-                </div>
-              </span>
-            </div>
-          </nav>
-        
-        
-        @yield('conteudo')
 
+  <nav class="navbar mb-2 navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1"><a class="nav-link active" aria-current="page" href="{{ route('listar_series') }}">Home</a></span>
+      @auth
+      <a href="/logout" class="nav-link">Sair</a> 
+      @endauth      
+
+      @guest
+      <a href="{{ route('login') }}" class="nav-link">Entrar</a>    
+      @endguest
     </div>
+  </nav>
 
-    @yield('footer-script')
+  <div class="container">
+
+      <nav class="navbar navbar-light bg-light mb-2">
+          <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+              <div class="display-3">
+                  @yield('titulo')
+              </div>
+            </span>
+          </div>
+        </nav>
+      
+      
+      @yield('conteudo')
+
+  </div>
+
+  @yield('footer-script')
 </body>
 </html>
