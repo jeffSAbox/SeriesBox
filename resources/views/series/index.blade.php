@@ -18,6 +18,7 @@
                 {{ $serie->nome }}
             </div>
 
+            @auth            
             <div class="input-group w-50" hidden id="input-nome-serie-{{ $serie->id_serie }}">
                 <input type="text" class="form-control" value="{{ $serie->nome }}">
                 <div class="input-group-append">
@@ -27,17 +28,22 @@
                     @csrf
                 </div>
             </div>
+            @endauth
 
             <div class="d-flex">
+                @auth                
                 <button class="btn btn-warning btn-sm me-1" onclick="toggleInput({{ $serie->id_serie }})">
                     <i class="bi bi-pencil-square"></i>
                 </button>
-                <a href="/serie/{{ $serie->id_serie }}/temporadas" class="btn btn-info me-1"><i class="bi bi-list"></i></a>          
+                @endauth
+                <a href="/serie/{{ $serie->id_serie }}/temporadas" class="btn btn-info me-1"><i class="bi bi-list"></i></a> 
+                @auth        
                 <form method="POST" class="ml-5" action="/serie/{{ $serie->id_serie }}" onsubmit="return confirm('Tem certeza que deseja deletar a serie {{ $serie->nome }}')">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button>
                 </form>
+                @endauth
             </div>
         </div>
     </li>    

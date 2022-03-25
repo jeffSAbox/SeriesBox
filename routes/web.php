@@ -25,27 +25,24 @@ Route::get('/docLaravel', function () {
 
 //  SERIES
 Route::get('/', [SeriesController::class, "index"])
-    ->middleware('auth')
     ->name("listar_series");    // index
 Route::get("/serie/adicionar", [SeriesController::class, 'create'])
-    ->middleware('auth')
+    ->middleware('autLogin')
     ->name("form_criar_serie"); // form create
 Route::post("/serie/adicionar", [SeriesController::class, 'store'])
-    ->middleware('auth'); // salvar form create
-Route::delete("/serie/{id_serie}", [SeriesController::class, 'destroy'])
-    ->middleware('auth'); // deletar serie
+    ->middleware('autLogin'); // salvar form create
+Route::delete("/serieautLogin/{id_serie}", [SeriesController::class, 'destroy'])
+    ->middleware('autLogin'); // deletar serie
 Route::post('/serie/{id}/editarNome', [SeriesController::class, 'editarNome'])
-    ->middleware('auth');
+    ->middleware('autLogin');
 
 //  TEMPORADAS
-Route::get('/serie/{serieId}/temporadas', [TemporadasController::class, 'index'])
-    ->middleware('auth');
+Route::get('/serie/{serieId}/temporadas', [TemporadasController::class, 'index']);
 
 //  EPISODIOS
-Route::get('/temporada/{temporada}/episodios', [EpisodiosController::class, 'index'])
-    ->middleware('auth');
+Route::get('/temporada/{temporada}/episodios', [EpisodiosController::class, 'index']);
 Route::post('/temporada/{temporada}/episodios/assistir', [EpisodiosController::class, 'assistir'])
-    ->middleware('auth');
+    ->middleware('autLogin');
 
 //  LOGIN
 Route::get('/login', [LoginController::class, 'index'])
@@ -53,7 +50,7 @@ Route::get('/login', [LoginController::class, 'index'])
 Route::post('/login', [LoginController::class, 'fazerLogin']);
 
 //  LOGOUT
-Route::resource('logout', LogoutController::class)->only('index');
+Route::resource('/logout', LogoutController::class)->only('index');
 
 //  LOGIN - CADASTRO
 Route::get('/login/cadastrar', [LoginCadastroController::class, 'index'])
