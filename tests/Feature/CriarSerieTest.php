@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Serie;
 use App\Service\criadorSeries;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -11,7 +12,7 @@ use Tests\TestCase;
 class CriarSerieTest extends TestCase
 {
 
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     /** @var criadorSeries */
     private $criadorSerie;
