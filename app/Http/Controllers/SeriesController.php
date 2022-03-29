@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SeriesAdicionarRequest;
 use App\Models\Serie;
 use App\Service\criadorSeries;
+use App\Service\enviarEmailParaUsuarioLogado;
 use App\Service\removedorSeries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,15 +32,25 @@ class SeriesController extends Controller
     public function store(SeriesAdicionarRequest $request, criadorSeries $criadorSeries)
     {
 
-        $serie = $criadorSeries->criarSerie(
+        $dadosSerie = [
             $request->nome, 
             $request->qtd_temporada, 
             $request->qtd_episodio
-        );
-
+        ];
+        $serie = $criadorSeries->criarSerie(...$dadosSerie);
+        
         $request->session()->flash(
             "msg_alert", "Serie {$serie->nome}, temporadas e episodios criado com sucesso!"
         );
+
+        //  ENVIAR EMAIL
+        $enviarEmail = new enviarEmailParaUsuarioLogado();
+        if( !$enviarEmail->enviarSerieCriada(...$dadosSerie) )
+        {
+            $request->session()->flash(
+                "msg_alert", "Serie {$serie->nome}, temporadas e episodios criado com sucesso! Mas falhou ao enviar e-mail."
+            );
+        }
 
         return redirect()->route("listar_series");
 
