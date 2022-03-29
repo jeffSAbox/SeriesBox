@@ -6,6 +6,8 @@ use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Login\LogoutController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\TemporadasController;
+use App\Mail\novaSerie;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,3 +58,31 @@ Route::resource('/logout', LogoutController::class)->only('index');
 Route::get('/login/cadastrar', [LoginCadastroController::class, 'index'])
     ->name('loginCadastrar');
 Route::post('/login/cadastrar', [LoginCadastroController::class, 'store']);
+
+//  MAIL - SERIES
+Route::get('/mail/series', function(){
+    return new novaSerie(
+        'DARK',
+        5,
+        10
+    );
+});
+
+
+Route::get('/mail/series/enviar', function(){
+    $email = new novaSerie(
+        'DARK',
+        5,
+        10
+    );
+    $email->subject('Nova serie foi adicionado!');
+
+    $usuario = (object)[
+        'email'=>'jeff_zb@msn.com',
+        'name'=>'Jeff MSN'
+    ];
+
+    Mail::to($usuario)->send($email);
+
+    return "Email enviado com sucesso!";
+});
