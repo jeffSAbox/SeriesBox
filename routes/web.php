@@ -6,8 +6,6 @@ use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Login\LogoutController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\TemporadasController;
-use App\Mail\novaSerie;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
