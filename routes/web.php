@@ -31,7 +31,7 @@ Route::get("/serie/adicionar", [SeriesController::class, 'create'])
     ->name("form_criar_serie"); // form create
 Route::post("/serie/adicionar", [SeriesController::class, 'store'])
     ->middleware('autLogin'); // salvar form create
-Route::delete("/serieautLogin/{id_serie}", [SeriesController::class, 'destroy'])
+Route::delete("/serie/{id_serie}", [SeriesController::class, 'destroy'])
     ->middleware('autLogin'); // deletar serie
 Route::post('/serie/{id}/editarNome', [SeriesController::class, 'editarNome'])
     ->middleware('autLogin');
