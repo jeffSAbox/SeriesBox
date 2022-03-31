@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Mail\novaSerie;
 use Error;
 use Exception;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -26,15 +27,33 @@ class enviarEmailParaUsuarioLogado
 
         try
         {        
-            $this->email = new novaSerie(
-                $nome,
-                $qtdTemporadas,
-                $qtdEpisodios
-            );
 
-            $this->email->subject('Nova serie foi criada!');
+            $usuarios = User::all();
 
-            Mail::to($this->usuarioLogado)->send($this->email);
+            foreach( $usuarios as $usuario )
+            {
+                $this->email = new novaSerie(
+                    $nome,
+                    $qtdTemporadas,
+                    $qtdEpisodios
+                );
+
+                $this->email->subject('Nova serie foi criada!');
+
+                Mail::to($usuario)->send($this->email);
+                sleep(5);
+
+            }
+
+            // $this->email = new novaSerie(
+            //     $nome,
+            //     $qtdTemporadas,
+            //     $qtdEpisodios
+            // );
+
+            // $this->email->subject('Nova serie foi criada!');
+
+            // Mail::to($this->usuarioLogado)->send($this->email);
         }
         catch(Exception $error)
         {
