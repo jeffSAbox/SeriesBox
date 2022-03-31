@@ -29,6 +29,7 @@ class enviarEmailParaUsuarioLogado
         {        
 
             $usuarios = User::all();
+            $delay_sec = 10;
 
             foreach( $usuarios as $usuario )
             {
@@ -40,20 +41,12 @@ class enviarEmailParaUsuarioLogado
 
                 $this->email->subject('Nova serie foi criada!');
 
-                Mail::to($usuario)->send($this->email);
-                sleep(5);
+                Mail::to($usuario)->later(now()->addSeconds($delay_sec), $this->email);
+
+                $delay_sec+= 10;
 
             }
 
-            // $this->email = new novaSerie(
-            //     $nome,
-            //     $qtdTemporadas,
-            //     $qtdEpisodios
-            // );
-
-            // $this->email->subject('Nova serie foi criada!');
-
-            // Mail::to($this->usuarioLogado)->send($this->email);
         }
         catch(Exception $error)
         {
