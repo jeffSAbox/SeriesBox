@@ -42,6 +42,8 @@ class enviarEmailParaUsuarioLogado
                 $this->email->subject('Nova serie foi criada!');
 
                 Mail::to($usuario)->later(now()->addSeconds($delay_sec), $this->email);
+                // Mail::to($usuario)->send($this->email);
+                // sleep(10);
 
                 $delay_sec+= 10;
 
