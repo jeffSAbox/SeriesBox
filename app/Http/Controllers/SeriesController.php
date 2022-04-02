@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EventoNovaSerieCriada;
 use App\Http\Requests\SeriesAdicionarRequest;
 use App\Models\Serie;
 use App\Service\criadorSeries;
@@ -44,13 +45,8 @@ class SeriesController extends Controller
         );
 
         //  ENVIAR EMAIL
-        $enviarEmail = new enviarEmailParaUsuarioLogado();
-        if( !$enviarEmail->enviarSerieCriada(...$dadosSerie) )
-        {
-            $request->session()->flash(
-                "msg_alert", "Serie {$serie->nome}, temporadas e episodios criado com sucesso! Mas falhou ao enviar e-mail."
-            );
-        }
+        $eventoNovaSerie = new EventoNovaSerieCriada(...$dadosSerie);
+        event($eventoNovaSerie);
 
         return redirect()->route("listar_series");
 
