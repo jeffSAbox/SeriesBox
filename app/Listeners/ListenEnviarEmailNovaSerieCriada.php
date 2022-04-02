@@ -7,8 +7,11 @@ use App\Service\enviarEmailParaUsuarioLogado;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class ListenEnviarEmailNovaSerieCriada
+class ListenEnviarEmailNovaSerieCriada implements ShouldQueue
 {
+
+    // public $delay = 10;
+
     /**
      * Create the event listener.
      *
