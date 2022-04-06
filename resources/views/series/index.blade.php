@@ -14,8 +14,12 @@
     @foreach ($listaSeries as $serie)
     <li class="list-group-item">
         <div class="d-flex justify-content-between">
-            <div id="nome-serie-{{ $serie->id_serie }}">
-                {{ $serie->nome }}
+
+            <div>
+                <img src="{{ $serie->capa_url }}" width="100" height="100" class="img-thumbnail" alt="{{ $serie->none }}">
+                <span id="nome-serie-{{ $serie->id_serie }}">
+                    {{ $serie->nome }}
+                </span>
             </div>
 
             @auth            
@@ -30,9 +34,9 @@
             </div>
             @endauth
 
-            <div class="d-flex">
+            <div class="d-flex align-items-center">
                 @auth                
-                <button class="btn btn-warning btn-sm me-1" onclick="toggleInput({{ $serie->id_serie }})">
+                <button class="btn btn-warning me-1" onclick="toggleInput({{ $serie->id_serie }})">
                     <i class="bi bi-pencil-square"></i>
                 </button>
                 @endauth

@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\DB;
 class criadorSeries
 {
 
-    public function criarSerie(string $nome, int $qtd_temporadas, int $qtd_episodios): Serie
+    public function criarSerie(string $nome, int $qtd_temporadas, int $qtd_episodios, string $capa = null): Serie
     {
         
         DB::beginTransaction();
         $serie = Serie::create([
-            'nome' => $nome
+            'nome' => $nome,
+            'capa' => $capa
         ]);
 
         $this->criarTemporadas($serie, $qtd_temporadas, $qtd_episodios);

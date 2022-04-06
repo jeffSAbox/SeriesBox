@@ -33,10 +33,17 @@ class SeriesController extends Controller
     public function store(SeriesAdicionarRequest $request, criadorSeries $criadorSeries)
     {
 
+        $file_capa = null;
+        if( $request->hasFile('capa') )
+        {
+            $file_capa = $request->file('capa')->store('series/capas');
+        }
+
         $dadosSerie = [
             $request->nome, 
             $request->qtd_temporada, 
-            $request->qtd_episodio
+            $request->qtd_episodio,
+            $file_capa
         ];
         $serie = $criadorSeries->criarSerie(...$dadosSerie);
         
