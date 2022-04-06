@@ -8,7 +8,7 @@ class Serie extends Model
 {
     protected $table = "series";
     public $timestamps = false; 
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'capa'];
     protected $primaryKey = "id_serie";
 
     public function Temporadas()
