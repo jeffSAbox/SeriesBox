@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Models\{Episodio, Serie, Temporada};
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class removedorSeries
 {
@@ -16,6 +17,8 @@ class removedorSeries
             
             $this->removerTemporadas($serie);
             $serie->delete();
+
+            $this->removerCapa($serie);
         DB::commit();
 
         return $nomeSerie;
@@ -34,5 +37,13 @@ class removedorSeries
         $temporada->Episodios->each( function(Episodio $episodio){
             $episodio->delete();
         } );
+    }
+
+    private function removerCapa(Serie $serie):void
+    {
+        if( $serie->capa )
+        {
+            Storage::delete($serie->capa);
+        }
     }
 }
