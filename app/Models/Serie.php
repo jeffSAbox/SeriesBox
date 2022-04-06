@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Serie extends Model
 {
@@ -14,5 +15,15 @@ class Serie extends Model
     public function Temporadas()
     {
         return $this->hasMany(Temporada::class, 'serie_id');
+    }
+
+    public function getCapaUrlAttribute()
+    {
+        if( $this->capa )
+        {
+            return Storage::url($this->capa);
+        }
+
+        return Storage::url("series/capas/sem_imagem.png");
     }
 }
