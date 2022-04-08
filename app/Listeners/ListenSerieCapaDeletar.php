@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Storage;
 
-class ListenSerieCapaDeletar
+class ListenSerieCapaDeletar implements ShouldQueue
 {
     /**
      * Create the event listener.

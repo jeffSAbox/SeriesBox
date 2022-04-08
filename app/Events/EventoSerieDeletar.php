@@ -15,7 +15,7 @@ class EventoSerieDeletar
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /** @var $serie Serie */
+    /** @var object */
     public $serie;
 
     /**
@@ -23,7 +23,7 @@ class EventoSerieDeletar
      *
      * @return void
      */
-    public function __construct(Serie $serie)
+    public function __construct(object $serie)
     {
         $this->serie = $serie;
     }

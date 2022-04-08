@@ -41,7 +41,9 @@ class removedorSeries
 
     private function removerCapa(Serie $serie):void
     {
-        $evento = new EventoSerieDeletar($serie);
+        $obj_serie = (object) ['capa' => $serie->capa];
+
+        $evento = new EventoSerieDeletar($obj_serie);
         event($evento);        
     }
 }
