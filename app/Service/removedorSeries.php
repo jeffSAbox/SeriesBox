@@ -2,9 +2,9 @@
 
 namespace App\Service;
 
+use App\Events\EventoSerieDeletar;
 use App\Models\{Episodio, Serie, Temporada};
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class removedorSeries
 {
@@ -41,9 +41,7 @@ class removedorSeries
 
     private function removerCapa(Serie $serie):void
     {
-        if( $serie->capa )
-        {
-            Storage::delete($serie->capa);
-        }
+        $evento = new EventoSerieDeletar($serie);
+        event($evento);        
     }
 }
