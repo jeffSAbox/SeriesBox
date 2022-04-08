@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
             \App\Listeners\ListenEnviarEmailNovaSerieCriada::class,
             \App\Listeners\LogSerieNovaCriada::class    
         ],
+        \App\Events\EventoSerieDeletar::class => [
+            \App\Listeners\ListenSerieCapaDeletar::class
+        ]
     ];
 
     /**
